@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>PHP7新特性</title>
+		<link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+		<link href="//gitblog.chengxuan.li/HiBlog/resource/theme/default/hiblog.css" type="text/css" rel="stylesheet" />
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js?debug=1"></script>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js?debug=1"></script>
+		<![endif]-->
+	</head>
+	<body class="home">
+		<div class="container-fluid">
+			<div id="sidebar" class="col-md-3 col-md-push-9" role="complementary"></div>
+			<div id="content" class="col-md-9 col-md-pull-3" role="main">
+<ol class="breadcrumb">
+	<li>
+		<a href="/">首页</a>
+	</li>
+	<li>
+		<a href="/category/1-1.html">默认分类</a>
+	</li>
+	<li class="active">PHP7新特性</li>
+</ol>
+
+<article class="panel panel-default panel-index-article">
+	<div class="panel-body">
+		<h1>PHP7新特性</h1>
+		<h1><span style="color:rgb(47,47,47); font-family:宋体,verdana,arial; font-size:13px"><span style="color:rgb(68,68,68); font-family:tahoma,microsoft yahei,simsun; font-size:14px">&nbsp; &nbsp; &nbsp; &nbsp;PHP7将在2015年12月正式发布，</span></span><span style="font-family:microsoft yahei,verdana,sans-serif,simsun; font-size:15px">PHP7 ，将会是PHP脚本语言的重大版本更新，同时将带来大幅的性能改进和新的特性，以及改进一些过时功能。&nbsp;</span><span style="font-family:microsoft yahei,verdana,sans-serif,simsun; font-size:15px">该 发布版本将会专注在性能加强，源自PHP版本树中的phpng分支。在硅谷公司的ZendCon会议，PHP工具厂商Zend技术官方讨论phpng和 PHP7的进度。&ldquo;（本次升级）真正专注于帮助业界的应用程序显著加强执行速度，再加上，我们在PHP中的其他改进，&rdquo;Zend的首席执行官安迪特曼斯 （曾参与了PHP语言的持续开发和发展）表示。&nbsp;</span></h1>
+
+<h1><span style="color:rgb(47,47,47); font-family:宋体,verdana,arial; font-size:13px"><span style="color:rgb(68,68,68); font-family:tahoma,microsoft yahei,simsun; font-size:14px">&nbsp; &nbsp; &nbsp; 我们来看看官网给出的php7 引擎和特性：</span></span></h1>
+
+<h1>PHP7引擎( What will be in PHP 7 / PHPNG )</h1>
+
+<p>&nbsp;</p>
+
+<ul>
+	<li><span style="font-size:14px">Performance Improvements with the addition of PHPNG engine.（使用PHPNG引擎来提升性能）</span></li>
+</ul>
+
+<ul>
+	<li><span style="font-size:14px">JIT - Just in Time compiler &nbsp;(即时编辑器&nbsp;<a href="https://www.baidu.com/link?url=qxM2KBXYAQYr1rmIv8Mp_5d4GeKdQ8sc5dtgeizY9hobLztalJDtbzpxsFTpu6Uee7rAZUYgL88rB8P2rGphn_&amp;ie=utf-8&amp;f=8&amp;tn=baidu&amp;wd=JIT%20-%20Just%20in%20Time%20compiler" style="font-family:arial; line-height:1.54" target="_blank"><span style="color:rgb(204,0,0)">JIT</span>&nbsp;<span style="color:rgb(204,0,0)">Compiler</span>_百度百科</a>）</span></li>
+</ul>
+
+<ul>
+	<li><span style="font-size:14px">Abstract Syntax Tree for compilation(<span style="color:rgb(47,47,47); font-family:宋体,verdana,arial">抽象语法树编译)</span></span></li>
+</ul>
+
+<ul>
+	<li><span style="font-size:14px">Asynchronous refactoring of the I/O layer.&nbsp;<span style="color:rgb(47,47,47); font-family:宋体,verdana,arial">对I/O层的异步重构。</span></span></li>
+</ul>
+
+<ul>
+	<li>Multi-threaded build in Web Server<span style="color:rgb(47,47,47); font-family:宋体,verdana,arial; font-size:13px">多线程构建Web服务器</span></li>
+</ul>
+
+<ul>
+	<li>Expanded use of -&gt;, [], (), {}, and :: operators &nbsp;<span style="color:rgb(47,47,47); font-family:宋体,verdana,arial; font-size:13px">扩展使用 -&gt;, [], (), {}, 和 :: 符号</span></li>
+</ul>
+
+<ul>
+	<li><span style="font-size:14px">100% increase in performance<span style="color:rgb(47,47,47); font-family:宋体,verdana,arial">性能提升 100% (应该是QPS)</span></span></li>
+</ul>
+
+<ul>
+	<li><span style="font-size:14px">Cool Name: PHPNG 酷名：PHPNG引擎</span></li>
+	<li>&nbsp;</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div><span style="color:#333333; font-family:helvetica neue,helvetica,arial,sans-serif"><span style="font-size:14px"><strong><span style="color:rgb(51,51,51); font-family:microsoft yahei,verdana,sans-serif,simsun; font-size:14px">1) PHP7速度是 PHP5.6 的两倍</span></strong></span></span></div>
+
+<div><span style="color:#333333; font-family:helvetica neue,helvetica,arial,sans-serif"><span style="font-size:14px"><strong><span style="color:rgb(51,51,51); font-family:microsoft yahei,verdana,sans-serif,simsun; font-size:14px"><img alt="" src="http://img.blog.csdn.net/20150929162009825" style="color:rgb(51,51,51); font-family:microsoft yahei,verdana,sans-serif,simsun; font-size:15px; line-height:30px" /></span></strong></span></span></div>
+
+<div>&nbsp;</div>
+
+<div>
+<div>
+<p>&nbsp;</p>
+
+<p><strong><span style="color:rgb(51,51,51); font-family:helvetica neue,helvetica,arial,sans-serif; font-size:14px">2) JIT - Just in Time compiler &nbsp;(</span><span style="color:rgb(51,51,51); font-family:helvetica neue,helvetica,arial,sans-serif; font-size:14px">即时编辑器）</span></strong></p>
+
+<p>Just In Time（即时编译）是一种软件优化技术，指在运行时才会去编译字节码为机器码。从直觉出发，我们都很容易认为，机器码是计算机能够直接识别和执行的，比起Zend读取opcode逐条执行效率会更高。其中，HHVM（HipHop Virtual Machine，HHVM是一个Facebook开源的PHP虚拟机）就采用JIT，让他们的PHP性能测试提升了一个数量级，放出一个令人震惊的测试结果，也让我们直观地认为JIT是一项点石成金的强大技术。</p>
+
+<p>而实际上，在2013年的时候，鸟哥和Dmitry（PHP语言内核开发者之一）就曾经在PHP5.5的版本上做过一个JIT的尝试（并没有发布）。PHP5.5的原来的执行流程，是将PHP代码通过词法和语法分析，编译成opcode字节码（格式和汇编有点像），然后，Zend引擎读取这些opcode指令，逐条解析执行。</p>
+
+<p>而他们在opcode环节后引入了类型推断（TypeInf），然后通过JIT生成ByteCodes，然后再执行。</p>
+
+<p>于是，在benchmark（测试程序）中得到令人兴奋的结果，实现JIT后性能比PHP5.5提升了8倍。然而，当他们把这个优化放入到实际的项目WordPress（一个开源博客项目）中，却几乎看不见性能的提升，得到了一个令人费解的测试结果。</p>
+
+<p>于是，他们使用Linux下的profile类型工具，对程序执行进行CPU耗时占用分析。</p>
+
+<p>执行100次WordPress的CPU消耗的分布：</p>
+
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img alt="" src="http://img.blog.csdn.net/20150929165521846" /></div>
+</div>
+</div>
+
+<div>&nbsp;</div>
+
+<div>
+<p>注解：</p>
+
+<p>21%CPU时间花费在内存管理。</p>
+
+<p>12%CPU时间花费在hash table操作，主要是PHP数组的增删改查。</p>
+
+<p>30%CPU时间花费在内置函数，例如strlen。</p>
+
+<p>25%CPU时间花费在VM（Zend引擎）。</p>
+
+<p>&nbsp;</p>
+
+<p>经过分析之后，得到了两个结论：</p>
+
+<p>&nbsp;</p>
+
+<p>（1）JIT生成的ByteCodes如果太大，会引起CPU缓存命中率下降（CPU Cache Miss）</p>
+
+<p>&nbsp;</p>
+
+<p>在PHP5.5的代码里，因为并没有明显类型定义，只能靠类型推断。尽可能将可以推断出来的变量类型，定义出来，然后，结合类型推断，将非该类型的分支代码去掉，生成直接可执行的机器码。然而，类型推断不能推断出全部类型，在WordPress中，能够推断出来的类型信息只有不到30%，能够减少的分支代码有限。导致JIT以后，直接生成机器码，生成的ByteCodes太大，最终引起CPU缓存命中大幅度下降（CPU Cache Miss）。</p>
+
+<p>&nbsp;</p>
+
+<p>CPU缓存命中是指，CPU在读取并执行指令的过程中，如果需要的数据在CPU一级缓存（L1）中读取不到，就不得不往下继续寻找，一直到二级缓存（L2）和三级缓存（L3），最终会尝试到内存区域里寻找所需要的指令数据，而内存和CPU缓存之间的读取耗时差距可以达到100倍级别。所以，ByteCodes如果过大，执行指令数量过多，导致多级缓存无法容纳如此之多的数据，部分指令将不得不被存放到内存区域。</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170042974" /></p>
+
+<p>CPU的各级缓存的大小也是有限的，下图是Intel i7 920的配置信息：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170112485" /></p>
+
+<p>&nbsp;</p>
+
+<p>因此，CPU缓存命中率下降会带来严重的耗时增加，另一方面，JIT带来的性能提升，也被它所抵消掉了。</p>
+
+<p>&nbsp;</p>
+
+<p>通过JIT，可以降低VM的开销，同时，通过指令优化，可以间接降低内存管理的开发，因为可以减少内存分配的次数。然而，对于真实的WordPress项目来说，CPU耗时只有25%在VM上，主要的问题和瓶颈实际上并不在VM上。因此，JIT的优化计划，最后没有被列入该版本的PHP7特性中。不过，它很可能会在更后面的版本中实现，这点也非常值得我们期待哈。</p>
+
+<p>&nbsp;</p>
+
+<p>（2）JIT性能的提升效果取决于项目的实际瓶颈</p>
+
+<p>&nbsp;</p>
+
+<p>JIT在benchmark中有大幅度的提升，是因为代码量比较少，最终生成的ByteCodes也比较小，同时主要的开销是在VM中。而应用在WordPress实际项目中并没有明显的性能提升，原因WordPress的代码量要比benchmark大得多，虽然JIT降低了VM的开销，但是因为ByteCodes太大而又引起CPU缓存命中下降和额外的内存开销，最终变成没有提升。</p>
+
+<p>不同类型的项目会有不同的CPU开销比例，也会得到不同的结果，脱离实际项目的性能测试，并不具有很好的代表性。</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>3). Zval的改变</strong></p>
+
+<p>&nbsp;</p>
+
+<p>PHP的各种类型的变量，其实，真正存储的载体就是Zval，它特点是海纳百川，有容乃大。从本质上看，它是C语言实现的一个结构体（struct）。对于写PHP的同学，可以将它粗略理解为是一个类似array数组的东西。</p>
+
+<p>PHP5的Zval，内存占据24个字节：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170139405" /></p>
+
+<p>&nbsp;</p>
+
+<p>PHP7的Zval，内存占据16个字节：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170205006" /></p>
+
+<p>Zval从24个字节下降到16个字节，为什么会下降呢，这里需要补一点点的C语言基础，辅助不熟悉C的同学理解。struct和union（联合体）有点不同，Struct的每一个成员变量要各自占据一块独立的内存空间，而union里的成员变量是共用一块内存空间（也就是说修改其中一个成员变量，公有空间就被修改了，其他成员变量的记录也就没有了）。因此，虽然成员变量看起来多了不少，但是实际占据的内存空间却下降了。</p>
+
+<p>&nbsp;</p>
+
+<p>除此之外，还有被明显改变的特性，部分简单类型不再使用引用。</p>
+
+<p>Zval结构图：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170241997" /></p>
+
+<p>图中Zval的由2个64bits（1字节=8bit，bit是&ldquo;位&rdquo;）组成，如果变量类型是long、bealoon这些长度不超过64bit的，则直接存储到value中，就没有下面的引用了。当变量类型是array、objec、string等超过64bit的，value存储的就是一个指针，指向真实的存储结构地址。</p>
+
+<p>对于简单的变量类型来说，Zval的存储变得非常简单和高效。</p>
+
+<p>不需要引用的类型：NULL、Boolean、Long、Double</p>
+
+<p>需要引用的类型：String、Array、Object、Resource、Reference</p>
+
+<p>&nbsp;</p>
+
+<p><strong>4) . 内部类型zend_string</strong></p>
+
+<p>&nbsp;</p>
+
+<p>Zend_string是实际存储字符串的结构体，实际的内容会存储在val（char，字符型）中，而val是一个char数组，长度为1（方便成员变量占位）。</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170540395" /></p>
+
+<p>&nbsp;</p>
+
+<p>结构体最后一个成员变量采用char数组，而不是使用char*，这里有一个小优化技巧，可以降低CPU的cache miss。</p>
+
+<p>&nbsp;</p>
+
+<p>如果使用char数组，当malloc申请上述结构体内存，是申请在同一片区域的，通常是长度是sizeof(_zend_string) + 实际char存储空间。但是，如果使用char*，那个这个位置存储的只是一个指针，真实的存储又在另外一片独立的内存区域内。</p>
+
+<p>&nbsp;</p>
+
+<p>使用char[1]和char*的内存分配对比：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170610498" /></p>
+
+<p>&nbsp;</p>
+
+<p>从逻辑实现的角度来看，两者其实也没有多大区别，效果很类似。而实际上，当这些内存块被载入到CPU的中，就显得非常不一样。前者因为是连续分配在一起的同一块内存，在CPU读取时，通常都可以一同获得（因为会在同一级缓存中）。而后者，因为是两块内存的数据，CPU读取第一块内存的时候，很可能第二块内存数据不在同一级缓存中，使CPU不得不往L2（二级缓存）以下寻找，甚至到内存区域查到想要的第二块内存数据。这里就会引起CPU Cache Miss，而两者的耗时最高可以相差100倍。</p>
+
+<p>&nbsp;</p>
+
+<p>另外，在字符串复制的时候，采用引用赋值，zend_string可以避免的内存拷贝。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>5）. PHP数组的变化（HashTable和Zend Array）</strong></p>
+
+<p>&nbsp;</p>
+
+<p>在编写PHP程序过程中，使用最频繁的类型莫过于数组，PHP5的数组采用HashTable实现。如果用比较粗略的概括方式来说，它算是一个支持双向链表的HashTable，不仅支持通过数组的key来做hash映射访问元素，也能通过foreach以访问双向链表的方式遍历数组元素。</p>
+
+<p>&nbsp;</p>
+
+<p>PHP5的HashTable：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170708263" /></p>
+
+<p>&nbsp;</p>
+
+<p>这个图看起来很复杂，各种指针跳来跳去，当我们通过key值访问一个元素内容的时候，有时需要3次的指针跳跃才能找对需要的内容。而最重要的一点，就在于这些数组元素存储，都是分散在各个不同的内存区域的。同理可得，在CPU读取的时候，因为它们就很可能不在同一级缓存中，会导致CPU不得不到下级缓存甚至内存区域查找，也就是引起CPU缓存命中下降，进而增加更多的耗时。</p>
+
+<p>PHP7的Zend Array（截图来源于PPT）：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170732364" /></p>
+
+<p>&nbsp;</p>
+
+<p>新版本的数组结构，非常简洁，让人眼前一亮。最大的特点是，整块的数组元素和hash映射表全部连接在一起，被分配在同一块内存内。如果是遍历一个整型的简单类型数组，效率会非常快，因为，数组元素（Bucket）本身是连续分配在同一块内存里，并且，数组元素的zval会把整型元素存储在内部，也不再有指针外链，全部数据都存储在当前内存区域内。当然，最重要的是，它能够避免CPU Cache Miss（CPU缓存命中率下降）。</p>
+
+<p>Zend Array的变化：</p>
+
+<p>（1） 数组的value默认为zval。</p>
+
+<p>（2） HashTable的大小从72下降到56字节，减少22%。</p>
+
+<p>（3） Buckets的大小从72下降到32字节，减少50%。</p>
+
+<p>（4） 数组元素的Buckets的内存空间是一同分配的。</p>
+
+<p>（5） 数组元素的key（Bucket.key）指向zend_string。</p>
+
+<p>（6） 数组元素的value被嵌入到Bucket中。</p>
+
+<p>（7） 降低CPU Cache Miss。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>6). 函数调用机制（Function Calling Convention）</strong></p>
+
+<p>&nbsp;</p>
+
+<p>PHP7改进了函数的调用机制，通过优化参数传递的环节，减少了一些指令，提高执行效率。</p>
+
+<p>PHP5的函数调用机制（截图来自于PPT）：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170803918" /></p>
+
+<p>&nbsp;</p>
+
+<p>图中，在vm栈中的指令send_val和recv参数的指令是相同，PHP7通过减少这两条重复，来达到对函数调用机制的底层优化。</p>
+
+<p>&nbsp;</p>
+
+<p>PHP7的函数调用机制（截图来自于PPT）：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929170829556" /></p>
+
+<p>&nbsp;</p>
+
+<p><strong>7). 通过宏定义和内联函数（inline），让编译器提前完成部分工作</strong></p>
+
+<p>&nbsp;</p>
+
+<p>C语言的宏定义会被在预处理阶段（编译阶段）执行，提前将部分工作完成，无需在程序运行时分配内存，能够实现类似函数的功能，却没有函数调用的压栈、弹栈开销，效率会比较高。内联函数也类似，在预处理阶段，将程序中的函数替换为函数体，真实运行的程序执行到这里，就不会产生函数调用的开销。</p>
+
+<p>&nbsp;</p>
+
+<p>PHP7在这方面做了不少的优化，将不少需要在运行阶段要执行的工作，放到了编译阶段。例如参数类型的判断（Parameters Parsing），因为这里涉及的都是固定的字符常量，因此，可以放到到编译阶段来完成，进而提升后续的执行效率。</p>
+
+<p>&nbsp;</p>
+
+<p>例如下图中处理传递参数类型的方式，从左边的写法，优化为右边宏的写法。</p>
+&nbsp;
+
+<p>&nbsp;</p>
+</div>
+
+<div>&nbsp;</div>
+
+<div>
+<h3>PHP 7.0.0 RC 2 Released新特性</h3>
+
+<div>
+<ul>
+	<li>Improved performance: PHP 7 is up to twice as fast as PHP 5.6 ：性能是php5.6的两倍</li>
+</ul>
+
+<ul>
+	<li><span style="font-size:14px">Consistent 64-bit support 支持64位，统一不同平台下的整型长度，字符串和文件上传都支持大于2GB。</span></li>
+	<li>Many fatal errors are now Exceptions &nbsp;<span style="font-family:microsoft yahei,verdana,sans-serif,simsun">更多Error错误可以进行异常处理</span></li>
+</ul>
+
+<ul>
+	<li>Removal of old and unsupported SAPIs and extensions&nbsp;移除了旧的和不支持的 SAPIs 和扩展</li>
+	<li>The null coalescing operator (??) &nbsp;&nbsp;null 合并操作符(??)</li>
+	<li>Combined comparison Operator (&lt;=&gt;) &nbsp;<span style="font-family:microsoft yahei,verdana,sans-serif,simsun">结合比较运算符 (&lt;=&gt;)</span></li>
+</ul>
+
+<ul>
+	<li>Return Type Declarations &nbsp; &nbsp;<span style="color:rgb(62,62,62); font-family:helvetica neue,helvetica,hiragino sans gb,microsoft yahei,arial,sans-serif; font-size:16px">返回类型声明</span></li>
+	<li>Scalar Type Declarations&nbsp;<span style="font-family:microsoft yahei,verdana,sans-serif,simsun">标量类型声明</span></li>
+</ul>
+</div>
+
+<div>
+<ul>
+	<li>Anonymous Classes &nbsp;<span style="font-family:microsoft yahei,verdana,sans-serif,simsun">匿名类</span></li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div><span style="font-family:microsoft yahei,verdana,sans-serif,simsun">具体例子说明：</span></div>
+
+<div>&nbsp;</div>
+
+<div><span style="background-color:rgb(250,250,252); font-family:微软雅黑; font-size:12px"><strong>更多的Error变为可捕获的Exception</strong></span></div>
+
+<div>&nbsp;</div>
+</div>
+
+<div>
+<p style="text-align:justify"><span style="font-size:12px"><span style="font-family:微软雅黑">&nbsp; &nbsp; &nbsp;PHP7 实现了一个全局的throwable接口，原来的Exception和部分Error都实现了这个接口（interface），&nbsp;以接口的方式定义了异常 的继承结构。于是，PHP7中更多的Error变为可捕获的Exception返回给开发者，如果不进行捕获则为Error，如果捕获就变为一个可在程序 内处理的Exception。这些可被捕获的Error通常都是不会对程序造成致命伤害的Error，例如函数不存。PHP7进一步方便开发者处理，让开 发者对程序的掌控能力更强。因为在默认情况下，Error会直接导致程序中断，而PHP7则提供捕获并且处理的能力，让程序继续执行下去，为程序员提供更 灵活的选择。</span></span></p>
+
+<p style="text-align:justify"><span style="font-size:12px"><span style="font-family:微软雅黑">例如，执行一个我们不确定是否存在的函数，PHP5兼容的做法是在函数被调用之前追加的判断function_exist，而PHP7则支持捕获Exception的处理方式。</span></span></p>
+
+<p style="text-align:justify"><span style="font-size:12px"><span style="font-family:微软雅黑">如下图中的例子</span></span></p>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img alt="" src="http://img.blog.csdn.net/20150929164926238?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" /></div>
+
+<div>&nbsp;</div>
+
+<div>
+<p><strong>AST（Abstract Syntax Tree，抽象语法树）</strong></p>
+
+<p>&nbsp;</p>
+
+<p>AST在PHP编译过程作为一个中间件的角色，替换原来直接从解释器吐出opcode的方式，让解释器（parser）和编译器（compliler）解耦，可以减少一些Hack代码，同时，让实现更容易理解和可维护。</p>
+
+<p>PHP5：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929164415657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" /></p>
+
+<p>&nbsp;</p>
+
+<p>PHP7：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929164427417?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" /></p>
+
+<p>&nbsp;</p>
+
+<p>更多AST信息：<a href="https://wiki.php.net/rfc/abstract_syntax_tree" target="_blank">https://wiki.php.net/rfc/abstract_syntax_tree</a></p>
+</div>
+
+<div><span style="font-family:microsoft yahei,verdana,sans-serif,simsun"><span style="color:rgb(62,62,62); font-family:helvetica neue,helvetica,hiragino sans gb,microsoft yahei,arial,sans-serif; font-size:16px"><strong>Native TLS（Native Thread local storage，原生线程本地存储）</strong></span></span></div>
+
+<div>
+<p>PHP在多线程模式下（例如，Web服务器Apache的woker和event模式，就是多线程），需要解决&ldquo;线程安全&rdquo;（TS，Thread Safe）的问题，因为线程是共享进程的内存空间的，所以每个线程本身需要通过某种方式，构建私有的空间来保存自己的私有数据，避免和其他线程相互污染。而PHP5采用的方式，就是维护一个全局大数组，为每一个线程分配一份独立的存储空间，线程通过各自拥有的key值来访问这个全局数据组。</p>
+
+<p>而这个独有的key值在PHP5中需要传递给每一个需要用到全局变量的函数，PHP7认为这种传递的方式并不友好，并且存在一些问题。因而，尝试采用一个全局的线程特定变量来保存这个key值。</p>
+
+<p>相关的Native TLS问题：<a href="https://wiki.php.net/rfc/native-tls" target="_blank">https://wiki.php.net/rfc/native-tls</a></p>
+
+<p>&nbsp;</p>
+
+<p><strong>Combined comparison Operator (&lt;=&gt;) &nbsp;结合比较运算符 (&lt;=&gt;)</strong></p>
+</div>
+
+<div>
+<div>
+<div>
+<div><strong>[php]</strong> <a class="ViewSource" href="http://blog.csdn.net/hguisu/article/details/45094079#" title="view plain">view plain</a><a class="CopyToClipboard" href="http://blog.csdn.net/hguisu/article/details/45094079#" title="copy">copy</a><a class="PrintSource" href="http://blog.csdn.net/hguisu/article/details/45094079#" title="print">print</a><a class="About" href="http://blog.csdn.net/hguisu/article/details/45094079#" title="?">?</a>
+
+<div>&nbsp;</div>
+</div>
+</div>
+
+<ol start="1">
+	<li>//&nbsp;PHP&nbsp;7之前的写法：比较两个数的大小&nbsp;&nbsp;</li>
+	<li>function&nbsp;order_func($a,&nbsp;$b)&nbsp;{&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;($a&nbsp;&lt;&nbsp;$b)&nbsp;?&nbsp;-1&nbsp;:&nbsp;(($a&nbsp;&gt;&nbsp;$b)&nbsp;?&nbsp;1&nbsp;:&nbsp;0);&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+	<li>//&nbsp;PHP新增的操作符&nbsp;&lt;=&gt;,perfect&nbsp;&nbsp;</li>
+	<li>function&nbsp;order_func($a,&nbsp;$b)&nbsp;{&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$a&nbsp;&lt;=&gt;&nbsp;$b;&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+</ol>
+</div>
+</div>
+
+<div>
+<p>&nbsp;</p>
+
+<p><strong>Return Type Declarations &nbsp;返回类型声明 和Scalar Type Declarations 标量类型声明</strong></p>
+
+<p>PHP语言一个非常重要的特点就是&ldquo;弱类型&rdquo;，它让PHP的程序变得非常容易编写，新手接触PHP能够快速上手，不过，它也伴随着一些争议。支持变量类型的定义，可以说是革新性质的变化，PHP开始以可选的方式支持类型定义。除此之外，还引入了一个开关指令declare(strict_type=1);，当这个指令一旦开启，将会强制当前文件下的程序遵循严格的函数传参类型和返回类型。</p>
+
+<p>&nbsp;</p>
+
+<p>例如一个add函数加上类型定义，可以写成这样：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929163602724?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" /></p>
+
+<p>&nbsp;</p>
+
+<p>如果配合强制类型开关指令，则可以变为这样：</p>
+
+<p><img alt="" src="http://img.blog.csdn.net/20150929163612843?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" /></p>
+
+<p>&nbsp;</p>
+
+<p>如果不开启strict_type，PHP将会尝试帮你转换成要求的类型，而开启之后，会改变PHP就不再做类型转换，类型不匹配就会抛出错误。对于喜欢&ldquo;强类型&rdquo;语言的同学来说，这是一大福音。</p>
+
+<p>更为详细的介绍： <a href="https://wiki.php.net/rfc/scalar_type_hints_v5" target="_blank"> https://wiki.php.net/rfc/scalar_type_hints_v5</a> <span style="color:rgb(62,62,62); font-family:helvetica neue,helvetica,hiragino sans gb,microsoft yahei,arial,sans-serif; font-size:16px"> <a href="http://hansionxu.blog.163.com/blog/static/241698109201522451148440/" target="_blank">PHP7标量类型声明RFC</a></span></p>
+
+<div>&nbsp;</div>
+</div>
+</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<h1>为啥直接PHP5.6跳到PHP7(Reasons given why we need to skip to PHP 7)</h1>
+
+<p>There are several reasons of why we shouldn&#39;t reuse version 6 for the next major version of PHP.</p>
+
+<ul>
+	<li>First and foremost, PHP 6 already existed and it was something completely different. The decimal system (or more accurately the infinite supply of numbers we have) makes it easy for us to skip a version, with plenty more left for future versions to come.</li>
+	<li>While it&#39;s true that the other PHP 6 never reached General Availability, it was still a very widely published and well-known project conducted by php.net that will share absolutely nothing with the version that is under discussion now. Anybody who knew what PHP 6 is (and there are many) will have a strong misconception in his or her mind as to the contents and features of this new upcoming version (essentially, that it&#39;s all about Unicode).</li>
+	<li>PHP 6, the original PHP 6, has been discussed in detail in many PHP conferences. It was taught to users as a done-deal, including detailed explanations about features and behavior (by php.net developers, not &#39;evil&#39; book authors).</li>
+	<li>PHP 6 was widely known not only within the Internals community, but around the PHP community at large. It was a high profile project that many - if not most - PHP community members knew about.</li>
+	<li>There&#39;s lots of PHP 6 information, about the original PHP 6, that exists around the web. Books are the smallest part of the problem.</li>
+	<li>Unlike the &#39;trivia question&#39; of &#39;why did we skip into 7?&#39;, reusing version 6 is likely to call&nbsp;<strong>real</strong>&nbsp;confusion in people&#39;s minds, with ample information on two completely different versions with entirely different feature sets that have the exact same name.</li>
+	<li>Skipping versions isn&#39;t unprecedented or uncommon in both open source projects and commercial products. MariaDB, jumped all the way up to version 10.0 to avoid confusion, Netscape Communicator skipped version 5.0 directly into 6.0, and Symantec skipped version 13. Each and every one of those had different reasons for the skipping, but the common denominator is that skipping versions is hardly a big deal.</li>
+	<li>Version 6 is generally associated with failure in the world of dynamic languages. PHP 6 was a failure; Perl 6 was a failure. It&#39;s actually associated with failure also outside the dynamic language world - MySQL 6 also existed but never released. The perception of version 6 as a failure - not as a superstition but as a real world fact (similar to the association of the word &#39;Vista&#39; with failure) - will reflect badly on this PHP version.</li>
+	<li>The case for 6 is mostly a rebuttal of some of the points above, but without providing a strong case for why we *shouldn&#39;t* skip version 6. If we go with PHP 7, the worst case scenario is that we needlessly skipped a version. We&#39;d still have an infinite supply of major versions at our disposal for future use. If, however, we pick 6 instead of 7 - the worst case scenario is widespread confusion in our community and potential negative perception about this version.</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>
+<h2>Supported SAPI</h2>
+
+<div>
+<ul>
+	<li>
+	<div>cli</div>
+	</li>
+	<li>
+	<div>cgi</div>
+	</li>
+	<li>
+	<div>fpm</div>
+	</li>
+	<li>
+	<div>apache (FastCGI and FPM might be significantly faster if mod_php is built as PIC)</div>
+	</li>
+	<li>
+	<div>apache2handler</div>
+	</li>
+</ul>
+</div>
+
+<h2>Supported Extensions</h2>
+
+<div>
+<ul>
+	<li>
+	<div>bcmath</div>
+	</li>
+	<li>
+	<div>bz2</div>
+	</li>
+	<li>
+	<div>calendar</div>
+	</li>
+	<li>
+	<div>com_dotnet</div>
+	</li>
+	<li>
+	<div>ctype</div>
+	</li>
+	<li>
+	<div>curl</div>
+	</li>
+	<li>
+	<div>date</div>
+	</li>
+	<li>
+	<div>dba</div>
+	</li>
+	<li>
+	<div>dom</div>
+	</li>
+	<li>
+	<div>enchant</div>
+	</li>
+	<li>
+	<div>ereg</div>
+	</li>
+	<li>
+	<div>exif</div>
+	</li>
+	<li>
+	<div>fileinfo</div>
+	</li>
+	<li>
+	<div>filter</div>
+	</li>
+	<li>
+	<div>ftp</div>
+	</li>
+	<li>
+	<div>gd</div>
+	</li>
+	<li>
+	<div>gettext</div>
+	</li>
+	<li>
+	<div>gmp</div>
+	</li>
+	<li>
+	<div>hash</div>
+	</li>
+	<li>
+	<div>iconv</div>
+	</li>
+	<li>
+	<div>imap</div>
+	</li>
+	<li>
+	<div>intl</div>
+	</li>
+	<li>
+	<div>json</div>
+	</li>
+	<li>
+	<div>ldap</div>
+	</li>
+	<li>
+	<div>libxml</div>
+	</li>
+	<li>
+	<div>mbstring</div>
+	</li>
+	<li>
+	<div>mcrypt</div>
+	</li>
+	<li>
+	<div>mysql</div>
+	</li>
+	<li>
+	<div>mysqli</div>
+	</li>
+	<li>
+	<div>mysqlnd</div>
+	</li>
+	<li>
+	<div>odbc (tested with unixODBC and MySQL driver)</div>
+	</li>
+	<li>
+	<div>openssl</div>
+	</li>
+	<li>
+	<div>OPcache</div>
+	</li>
+	<li>
+	<div>pcntl</div>
+	</li>
+	<li>
+	<div>pcre</div>
+	</li>
+	<li>
+	<div>PDO</div>
+	</li>
+	<li>
+	<div>pdo_firebird</div>
+	</li>
+	<li>
+	<div>pdo_mysql</div>
+	</li>
+	<li>
+	<div>PDO_ODBC (tested with unixODBC and MySQL driver)</div>
+	</li>
+	<li>
+	<div>pdo_pgsql</div>
+	</li>
+	<li>
+	<div>pdo_sqlite</div>
+	</li>
+	<li>
+	<div>pgsql</div>
+	</li>
+	<li>
+	<div>Phar</div>
+	</li>
+	<li>
+	<div>posix</div>
+	</li>
+	<li>
+	<div>pspell</div>
+	</li>
+	<li>
+	<div>readline</div>
+	</li>
+	<li>
+	<div>recode</div>
+	</li>
+	<li>
+	<div>Reflection</div>
+	</li>
+	<li>
+	<div>session</div>
+	</li>
+	<li>
+	<div>shmop</div>
+	</li>
+	<li>
+	<div>SimpleXML</div>
+	</li>
+	<li>
+	<div>snmp</div>
+	</li>
+	<li>
+	<div>soap</div>
+	</li>
+	<li>
+	<div>sockets</div>
+	</li>
+	<li>
+	<div>SPL</div>
+	</li>
+	<li>
+	<div>sqlite3</div>
+	</li>
+	<li>
+	<div>standard</div>
+	</li>
+	<li>
+	<div>sysvmsg</div>
+	</li>
+	<li>
+	<div>sysvsem</div>
+	</li>
+	<li>
+	<div>sysvshm</div>
+	</li>
+	<li>
+	<div>tidy</div>
+	</li>
+	<li>
+	<div>tokenizer</div>
+	</li>
+	<li>
+	<div>wddx</div>
+	</li>
+	<li>
+	<div>xml</div>
+	</li>
+	<li>
+	<div>xmlreader</div>
+	</li>
+	<li>
+	<div>xmlwriter</div>
+	</li>
+	<li>
+	<div>xsl</div>
+	</li>
+	<li>
+	<div>zip</div>
+	</li>
+	<li>
+	<div>zlib</div>
+	</li>
+</ul>
+</div>
+
+<h2>Unsupported Extensions (not converted yet)</h2>
+
+<div>
+<ul>
+	<li>
+	<div>interbase</div>
+	</li>
+	<li>
+	<div>mssql</div>
+	</li>
+	<li>
+	<div>oci8</div>
+	</li>
+	<li>
+	<div>pdo_dblib</div>
+	</li>
+	<li>
+	<div>pdo_oci</div>
+	</li>
+	<li>
+	<div>sybase_ct</div>
+	</li>
+</ul>
+</div>
+</div>
+
+<div>
+<h2>让PHP 7达到最高性能的几个Tips</h2>
+<span style="color:rgb(62,62,62); font-family:helvetica neue,helvetica,hiragino sans gb,microsoft yahei,arial,sans-serif; font-size:15px">鸟哥博客：http://www.laruence.com/2015/12/04/3086.html</span></div>
+
+<p><span style="font-size:15px">PHP7 VS PHP5.6</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="color:rgb(171,25,66); font-size:15px">1、Opcache</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">记得启用Zend Opcache，因为PHP7即使不启用Opcache速度也比PHP-5.6启用了Opcache快，所以之前测试时期就发生了有人一直没有启用Opcache的事情。启用Opcache非常简单，在php.ini配置文件中加入:</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">zend_extension=opcache.so</span></p>
+
+<p><span style="font-size:15px">opcache.enable=1</span></p>
+
+<p><span style="font-size:15px">opcache.enable_cli=1&quot;</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="color:rgb(171,25,66); font-size:15px">2、使用新的编译器</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">使用新一点的编译器，推荐GCC 4.8以上，因为只有GCC 4.8以上PHP才会开启Global Register for opline and execute_data支持，这个会带来5%左右的性能提升(Wordpres的QPS角度衡量)</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">其实GCC 4.8以前的版本也支持，但是我们发现它支持的有Bug，所以必须是4.8以上的版本才会开启这个特性。</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px"><span style="color:rgb(171,25,66)">3、HugePage</span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">我之前的文章也介绍过: 让你的PHP7更快之Hugepage ，首先在系统中开启HugePages，然后开启Opcache的huge_code_pages。</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">以我的CentOS 6.5为例，通过：</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">$sudo sysctl vm.nr_hugepages=512</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">分配512个预留的大页内存：</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">$ cat /proc/meminfo | grep Huge</span></p>
+
+<p><span style="font-size:15px">AnonHugePages: 106496 kB</span></p>
+
+<p><span style="font-size:15px">HugePages_Total: 512</span></p>
+
+<p><span style="font-size:15px">HugePages_Free: 504</span></p>
+
+<p><span style="font-size:15px">HugePages_Rsvd: 27</span></p>
+
+<p><span style="font-size:15px">HugePages_Surp: 0</span></p>
+
+<p><span style="font-size:15px">Hugepagesize: 2048 kB</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">然后在php.ini中加入：</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">opcache.huge_code_pages=1</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">这样一来，PHP会把自身的text段，以及内存分配中的huge都采用大内存页来保存，减少TLB miss，从而提高性能。</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="color:rgb(171,25,66); font-size:15px">4、Opcache file cache</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">开启Opcache File Cache(实验性)，通过开启这个，我们可以让Opcache把opcode缓存缓存到外部文件中，对于一些脚本，会有很明显的性能提升。</span></p>
+
+<p><span style="font-size:15px">在php.ini中加入:</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">opcache.file_cache=/tmp</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">这样PHP就会在/tmp目录下Cache一些Opcode的二进制导出文件，可以跨PHP生命周期存在。</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="color:rgb(171,25,66); font-size:15px">5、PGO</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">我之前的文章: 让你的PHP7更快(GCC PGO) 也介绍过，如果你的PHP是专门为一个项目服务，比如只是为你的Wordpress，或者drupal，或者其他什么，那么你就可以尝试通过PGO，来提升PHP，专门为你的这个项目提高性能。</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">具体的，以wordpress 4.1为优化场景。首先在编译PHP的时候首先:</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">$ make prof-gen</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">然后用你的项目训练PHP，比如对于Wordpress:</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">$ sapi/cgi/php-cgi -T 100 /home/huixinchen/local/www/htdocs/wordpress/index.php &gt;/dev/null</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">也就是让php-cgi跑100遍wordpress的首页，从而生成一些在这个过程中的profile信息。</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">最后：</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">$ make prof-clean</span></p>
+
+<p><span style="font-size:15px">$ make prof-use</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">这个时候你编译得到的PHP7，就是为你的项目量身打造的最高性能的编译版本。</span></p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size:15px">暂时就这么多吧，以后想起来再加，欢迎大家尝试，thanks。</span></p>
+	</div>
+	<div class="panel-footer">
+		<time datetime="" class="glyphicon glyphicon-calendar">
+			
+		</time>
+	</div>
+</article>
+
+<div class="comment-content panel panel-default">
+	<div class="panel-heading">评论</div>
+	<div class="panel-body">
+		<div class="ds-thread" data-thread-key="22" data-title="PHP7新特性"></div>
+	</div>
+</div>
+</div>
+		</div>
+
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="//gitblog.chengxuan.li/HiBlog/resource/theme/default/hiblog.js"></script>
+
+				<script type="text/javascript">
+			var duoshuoQuery = {
+				short_name : "chengxuan"
+			};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';
+				ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+				
+	</body>
+</html>
