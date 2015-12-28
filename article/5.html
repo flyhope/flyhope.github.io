@@ -1,21 +1,67 @@
-<h1>test</h1>
-<div><p>test</p></div>
-<div><br />
-<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined index: create_time in D:\var\www\HiBlog\var\tmp\smarty-compile\e44f2a78e0b7adbdf8365f80db48d712577abab3_0.tpl.article.php on line <i>35</i></th></tr>
-<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
-<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0005</td><td bgcolor='#eeeeec' align='right'>259920</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\var\www\HiBlog\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0026</td><td bgcolor='#eeeeec' align='right'>307200</td><td bgcolor='#eeeeec'><a href='http://www.php.net/Yaf-Application.run' target='_new'>run</a>
-(  )</td><td title='D:\var\www\HiBlog\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>15</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0035</td><td bgcolor='#eeeeec' align='right'>347472</td><td bgcolor='#eeeeec'>Aj_Manage_Article_createController->indexAction(  )</td><td title='D:\var\www\HiBlog\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>15</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0041</td><td bgcolor='#eeeeec' align='right'>406624</td><td bgcolor='#eeeeec'>Model\Article::create(  )</td><td title='D:\var\www\HiBlog\application\controllers\Aj\Manage\Article\Create.php' bgcolor='#eeeeec'>...\Create.php<b>:</b>14</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0239</td><td bgcolor='#eeeeec' align='right'>719152</td><td bgcolor='#eeeeec'>Model\Publish::article(  )</td><td title='D:\var\www\HiBlog\application\library\Model\Article.php' bgcolor='#eeeeec'>...\Article.php<b>:</b>83</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>6</td><td bgcolor='#eeeeec' align='center'>0.0308</td><td bgcolor='#eeeeec' align='right'>1360480</td><td bgcolor='#eeeeec'>Comm\Smarty->render(  )</td><td title='D:\var\www\HiBlog\application\library\Model\Publish.php' bgcolor='#eeeeec'>...\Publish.php<b>:</b>25</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>7</td><td bgcolor='#eeeeec' align='center'>0.0308</td><td bgcolor='#eeeeec' align='right'>1361168</td><td bgcolor='#eeeeec'>Smarty->fetch(  )</td><td title='D:\var\www\HiBlog\application\library\Comm\Smarty.php' bgcolor='#eeeeec'>...\Smarty.php<b>:</b>120</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>8</td><td bgcolor='#eeeeec' align='center'>0.0309</td><td bgcolor='#eeeeec' align='right'>1365576</td><td bgcolor='#eeeeec'>Smarty_Internal_Template->render(  )</td><td title='D:\var\www\HiBlog\application\library\Thirdpart\Smarty\libs\Smarty.class.php' bgcolor='#eeeeec'>...\Smarty.class.php<b>:</b>820</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>9</td><td bgcolor='#eeeeec' align='center'>0.0368</td><td bgcolor='#eeeeec' align='right'>1479520</td><td bgcolor='#eeeeec'>Smarty_Template_Compiled->render(  )</td><td title='D:\var\www\HiBlog\application\library\Thirdpart\Smarty\libs\sysplugins\smarty_internal_template.php' bgcolor='#eeeeec'>...\smarty_internal_template.php<b>:</b>246</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>10</td><td bgcolor='#eeeeec' align='center'>0.0396</td><td bgcolor='#eeeeec' align='right'>1486704</td><td bgcolor='#eeeeec'>Smarty_Internal_Template->getRenderedTemplateCode(  )</td><td title='D:\var\www\HiBlog\application\library\Thirdpart\Smarty\libs\sysplugins\smarty_template_compiled.php' bgcolor='#eeeeec'>...\smarty_template_compiled.php<b>:</b>202</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>11</td><td bgcolor='#eeeeec' align='center'>0.0396</td><td bgcolor='#eeeeec' align='right'>1503952</td><td bgcolor='#eeeeec'>content_5657a221dc14d6_42625941(  )</td><td title='D:\var\www\HiBlog\application\library\Thirdpart\Smarty\libs\sysplugins\smarty_internal_template.php' bgcolor='#eeeeec'>...\smarty_internal_template.php<b>:</b>371</td></tr>
-</table></font>
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>test</title>
+		<link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+		<link href="//gitblog.chengxuan.li/HiBlog/resource/theme/default/hiblog.css" type="text/css" rel="stylesheet" />
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js?debug=1"></script>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js?debug=1"></script>
+		<![endif]-->
+	</head>
+	<body class="home">
+		<div class="container-fluid">
+			<div id="sidebar" class="col-md-3 col-md-push-9" role="complementary"></div>
+			<div id="content" class="col-md-9 col-md-pull-3" role="main">
+<ol class="breadcrumb">
+	<li>
+		<a href="/">首页</a>
+	</li>
+	<li>
+		<a href="/categorys/default-1.html">默认分类</a>
+	</li>
+	<li class="active">test</li>
+</ol>
+
+<article class="panel panel-default panel-index-article">
+	<div class="panel-body">
+		<h1>test</h1>
+		<p>test</p>
+	</div>
+	<div class="panel-footer">
+		<time datetime="2015-11-27 08:22:12" pubdate="2015-12-28" class="glyphicon glyphicon-calendar">
+			2015-11-27 08:22:12
+		</time>
+	</div>
+</article>
+
+<div id="comment" class="comment-content panel panel-default">
+	<div class="panel-heading">评论</div>
+	<div class="panel-body">
+		<div class="ds-thread" data-thread-key="5" data-title="test"></div>
+	</div>
 </div>
+</div>
+		</div>
+
+        <script type="text/javascript">
+        var $CONFIG = {};
+        </script>
+        
+        
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="//gitblog.chengxuan.li/HiBlog/resource/theme/default/hiblog.js"></script>
+
+				<script type="text/javascript">
+			var duoshuoQuery = {
+				short_name : "chengxuan"
+			};
+		</script>
+		<script type="text/javascript" src="//static.duoshuo.com/embed.js"></script>
+				
+	</body>
+</html>
