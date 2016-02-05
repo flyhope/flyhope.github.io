@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>关于android 5.0 网络图标上的感叹号及其解决办法[转] - 李枨煊 - Powered By Hiblog</title>
+       <link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+     <link href="//gitblog.chengxuan.li/HiBlog/resource/theme/default/hiblog.css" type="text/css" rel="stylesheet" />
+      <!--[if lt IE 9]>
+     <script type="text/javascript" src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js?debug=1"></script>
+      <script type="text/javascript" src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js?debug=1"></script>
+     <![endif]-->
+  </head>
+   <body class="home">
+       <div class="container-fluid">
+         <div id="sidebar" class="col-md-3 col-md-push-9" role="complementary"></div>
+          <div id="content" class="col-md-9 col-md-pull-3" role="main">
+<ol class="breadcrumb">
+ <li>
+      <a href="/">首页</a>
+    </li>
+ <li>
+      <a href="/category/skill-1.html">奇技淫巧</a>
+    </li>
+ <li class="active">关于android 5.0 网络图标上的感叹号及其解决办法[转]</li>
+</ol>
+
+<article class="panel panel-default panel-article">
+  <div class="panel-body">
+      <h1>关于android 5.0 网络图标上的感叹号及其解决办法[转]</h1>
+       <p>原因众所周知，就我个人而言，无需ROOT喜欢的解决方法是，把网络检测服务器设置为国内的小米：</p>
+
+<ol>
+	<li>下载谷歌ADT开发工具。</li>
+	<li>打开手机开发者模式。</li>
+	<li>执行：adb shell &ldquo;settings put global captive_portal_server connect.rom.miui.com&rdquo;</li>
+</ol>
+
+<div>&nbsp;</div>
+
+<div><span style="font-size:medium">具体原理参考以下内容（转自小狐狸.中国博文）：</span></div>
+
+<p>升级了安卓5.0的同学们一定对网络图标上面的那个感叹号感到十分郁闷。安卓5.0引入了一种新的网络评估机制来评估网络状况，当你有网络请求时会自动选择网络连接条件最好的一个网络进行连接。该机制的代码实现如下：</p>
+
+<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/QQ%E6%88%AA%E5%9B%BE20141216160153.png" style="border:0px; height:341px; max-width:600px; width:543px" /></p>
+
+<p>简要来说就是，如果该网络是VPN，那么直接使用这个网络进行连接，否则调用<strong>isCaptivePortal()</strong>&nbsp;函数进行网络状况的判定，再根据判定结果决定是否选用此网络。 而罪魁祸首就是这个&nbsp;<strong>isCaptivePortal()</strong>&nbsp;函数，它会访问<strong>clients3.google.com/generate_204</strong>&nbsp;并根据返回结果来判断网络联通状况。正是这个google的网址被墙导致安卓没有办法评估网络，这样就导致了那个蛋碎的感叹号一直存在，以及wifi用着用着突然自动连回数据连接了。</p>
+
+<p>本来我想直接把&nbsp;<strong>isCaptivePortal()</strong>&nbsp;函数给屏蔽掉，让他一直返回成功，但是看了下google的代码，发现这个函数是非常有用处的，为什么呢？这个函数有个非常重要的作用，那就是判断当前网络是否需要登录。</p>
+
+<p>想必大家都连接过那些需要验证才能使用的wifi热点吧，当你们连接这些热点的时候，android会自动弹出提示询问你是否需要登录。而这个功能就是依靠了<strong>isCaptivePortal()</strong>&nbsp;这个函数才得以实现，具体原理如下：</p>
+
+<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/QQ%E6%88%AA%E5%9B%BE20141216161135.png" style="border:0px; height:421px; max-width:600px; width:571px" /></p>
+
+<p>安卓先访问&nbsp;<strong>clients3.google.com/generate_204</strong>&nbsp;这个网址，而这个网址如字面所说，会产生一个 http 204 返回值。204返回值的意思就是空内容。如果当前wifi是需要登录才可以连接，那么当试图访问google的服务器的时候，wifi的验证机制一定会自动跳转到一个登录页面，这个时候http请求的返回值就必然不是204了。就是通过这一机制，便可以区分当前wifi是否需要验证，不得不佩服想出这个办法的人来。</p>
+
+<p>然而这就导致了如果简单的屏蔽掉这个函数的功能，那么就没有办法自动提示登录了，但是如果不屏蔽掉那么这个网址被墙掉了，因此会有一个难看的感叹号。想来想去我想到了一个曲线救国的办法，那就是我们把这个网址改成国内的网址不就可以了？我们自己搭一个服务器，来产生这个204返回值给它，问题不就迎刃而解了吗？</p>
+
+<hr />
+<h2>那么下面就给出解决方法（无需root）：</h2>
+
+<p>1.完全屏蔽网络检查功能，最简单快速，但是就没有办法提示wifi登录：</p>
+
+<div>
+<div>
+<table border="0" cellpadding="0" cellspacing="0" style="background-attachment:initial; background-clip:initial; background-image:initial; background-origin:initial; background-position:initial; background-repeat:initial; background-size:initial; border-collapse:collapse; border:2px solid rgb(204, 204, 204); margin:5px 0px 10px">
+	<tbody>
+		<tr>
+			<td style="vertical-align:top">
+			<div>1</div>
+			</td>
+			<td style="vertical-align:top">
+			<div>
+			<div><code>adb shell&nbsp;</code><code>&quot;settings put global captive_portal_detection_enabled 0&quot;</code></div>
+			</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+
+<p>2.用国内的服务器替换掉google的服务器：</p>
+
+<div>
+<div>
+<table border="0" cellpadding="0" cellspacing="0" style="background-attachment:initial; background-clip:initial; background-image:initial; background-origin:initial; background-position:initial; background-repeat:initial; background-size:initial; border-collapse:collapse; border:2px solid rgb(204, 204, 204); margin:5px 0px 10px">
+	<tbody>
+		<tr>
+			<td style="vertical-align:top">
+			<div>1</div>
+			</td>
+			<td style="vertical-align:top">
+			<div>
+			<div><code>adb shell&nbsp;</code><code>&quot;settings put global captive_portal_server xn--yet824cpd.xn--fiqs8s&quot;</code></div>
+			</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+
+<p>这个服务器是一位网友自己建的<a href="http://xn--yet824cpd.xn--fiqs8s/" style="color: rgb(41, 112, 166); text-decoration: none;">http://小狐狸.中国/</a>&nbsp;我在服务器上写了个简单的204页面，网址是&nbsp;<a href="http://xn--yet824cpd.xn--fiqs8s/generate_204" style="color: rgb(41, 112, 166); text-decoration: none;">http://xn--yet824cpd.xn--fiqs8s/generate_204</a>&nbsp;只要用这个网址替换掉google的网址，就可以正常访问并检测网络状态了。不过由于本人的服务器速度并不快，所以感叹号还是会显示一小会儿的，不过应该很快就会消失。</p>
+
+<p><strong>如果你对原作者提供的服务速度不满意，可以在文末找到网友提供的其它服务地址。</strong></p>
+
+<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/Screenshot_2014-12-16-16-24-07-168x300.png" style="border:0px; max-width:600px" /></p>
+
+<p>是不是看着很舒服呢？烦人的感叹号没有了~</p>
+
+<p><strong>经过靠谱的确认，改修改方式具有持久性，重启依旧有效，除非刷机或者清除数据。</strong></p>
+
+<hr />
+<h2>如何建立自己的服务器</h2>
+
+<p>1. 对于apache服务器，如果你的服务器安装了rewrite模块，那么只需要在网站的.htaccess中加入以下代码：</p>
+
+<div>
+<div>
+<table border="0" cellpadding="0" cellspacing="0" style="background-attachment:initial; background-clip:initial; background-image:initial; background-origin:initial; background-position:initial; background-repeat:initial; background-size:initial; border-collapse:collapse; border:2px solid rgb(204, 204, 204); margin:5px 0px 10px">
+	<tbody>
+		<tr>
+			<td style="vertical-align:top">
+			<div>1</div>
+
+			<div>2</div>
+
+			<div>3</div>
+
+			<div>4</div>
+
+			<div>5</div>
+			</td>
+			<td style="vertical-align:top">
+			<div>
+			<div><code>&lt;IfModule mod_rewrite.c&gt;</code></div>
+
+			<div><code>&nbsp;&nbsp;</code><code>RewriteEngine On</code></div>
+
+			<div><code>&nbsp;&nbsp;</code><code>RewriteCond %{REQUEST_URI} /generate_204$</code></div>
+
+			<div><code>&nbsp;&nbsp;</code><code>RewriteRule $ / [R=204]</code></div>
+
+			<div><code>&lt;/IfModule&gt;</code></div>
+			</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+
+<p>2. 对于nginx，直接加入以下设置即可：</p>
+
+<div>
+<div>
+<table border="0" cellpadding="0" cellspacing="0" style="background-attachment:initial; background-clip:initial; background-image:initial; background-origin:initial; background-position:initial; background-repeat:initial; background-size:initial; border-collapse:collapse; border:2px solid rgb(204, 204, 204); margin:5px 0px 10px">
+	<tbody>
+		<tr>
+			<td style="vertical-align:top">
+			<div>1</div>
+			</td>
+			<td style="vertical-align:top">
+			<div>
+			<div><code>location /generate_204 { return 204; }</code></div>
+			</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+
+<p>3. 如果以上方法都无效，那么就要利用代码中的一个小trick来完成，直接在网站的根目录下建立一个叫做&ldquo;generate_204&rdquo;的空文件即可，因为安卓的源码中写了如果返回的内容为空那么也会当成204（毕竟一个空的页面怎么想都不可能是登录页面嘛！）。</p>
+
+<hr />
+<h2>一键设置工具（需要root）</h2>
+
+<p>锵锵锵！由于有些人不太熟悉adb之类的操作，因此就做了一个小工具方便大家直接在手机上设置！&nbsp;<img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/device-2014-12-26-214011.png" style="border:0px; height:806px; max-width:600px; width:454px" /></p>
+
+<ul>
+	<li>下载地址&nbsp;NoExclamation Portal Server 修改器&nbsp;<a href="https://www.noisyfox.cn/?smd_process_download=1&amp;download_id=318" style="color: rgb(41, 112, 166); text-decoration: none;" title="NoExclamation Portal Server 修改器">Download Now!</a></li>
+</ul>
+
+<div>&nbsp;</div>
+
+<hr />
+<h2>一些其它服务网址</h2>
+
+<p>我会尽我所能提供长期有效的服务，但是由于原作者服务器不是很快，而且网络状况有时候会不稳定，因此无法保证100%可靠的服务。不过有一些热心网友提供了其它服务网址，速度和稳定性或许会比原作者要好。故在此特别列出供大家选用。如果给提供者带来不便之处请回复告知，我会及时删除。</p>
+
+<p><em>by fengz</em>:&nbsp;<strong>www.v2ex.com</strong>&nbsp;V2EX建立的服务，速度不错，稳定性也很不错</p>
+
+<p><em>by lkebin</em>:&nbsp;<strong>liukebin.avosapps.com</strong>&nbsp;架设于LeanCloud服务器，据lkebin称是永久有效</p>
+
+<p><em>by Zohar</em>:&nbsp;<strong>www.iwch.me</strong>&nbsp;热心网友的个人站点</p>
+
+<p>原文地址：https://www.noisyfox.cn/45.html</p>
+ </div>
+    <div class="panel-footer">
+        <time datetime="2016-02-05 18:30:16" pubdate="2016-02-05" class="glyphicon glyphicon-calendar">
+         2016-02-05 18:30:16
+     </time>
+       
+        <div class="bshare-custom share"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-sharethis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+        <div class="clearfix"></div>
+  </div>
+</article>
+
+<div id="comment" class="comment-content panel panel-default">
+  <div class="panel-heading">评论</div>
+   <div class="panel-body">
+      <div class="ds-thread" data-thread-key="3" data-title="关于android 5.0 网络图标上的感叹号及其解决办法[转]"></div>
+  </div>
+</div>
+</div>
+     </div>
+
+        <script type="text/javascript">
+        var $CONFIG = {};
+        </script>
+        
+        
+     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="//gitblog.chengxuan.li/HiBlog/resource/theme/default/hiblog.js"></script>
+
+               <script type="text/javascript">
+           var duoshuoQuery = {
+              short_name : "chengxuan"
+          };
+        </script>
+           
+  </body>
+</html>
