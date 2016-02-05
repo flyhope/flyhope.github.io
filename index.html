@@ -16,6 +16,66 @@
        <div class="container-fluid">
          <div id="sidebar" class="col-md-3 col-md-push-9" role="complementary"></div>
           <div id="content" class="col-md-9 col-md-pull-3" role="main">
+<article class="panel panel-default panel-article panel-article-list" data-id="4">
+   <div class="panel-body">
+      <h2><a href="/article/4.html">PHP使用9行代码完成递归删除目录</a></h2>
+      <p>利用了PHP目录递归迭代器能轻易使用9行代码完成递归删除目录操作，废话少说，直接上代码。</p>
+
+<pre class="brush: php " data-pbcklang="php" data-pbcktabsize="4">
+function rmdir_recursion($path) {
+    $flag = FilesystemIterator::SKIP_DOTS | FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_FILEINFO;
+    $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, $flag),RecursiveIteratorIterator::CHILD_FIRST);
+    foreach($objects as $value) {
+        $realpath = $value-&gt;getRealpath();
+        $value-&gt;isDir() ? rmdir($realpath) : unlink($realpath);
+    }
+    rmdir($path);
+}</pre>...
+  </div>
+    <div class="panel-footer">
+        <a href="/category/php-1.html">PHP</a>
+       <a class="time hidden-sm" href="/article/4.html"><time datetime="" pubdate="" class="glyphicon glyphicon-calendar"></time> 2016-02-05 18:31:15</a>
+               <a class="comment" href="/article/4.html#comment"><span class="glyphicon glyphicon-comment"></span> <span class="ds-thread-count" data-thread-key="4" data-count-type="comments"></span></a>
+              <div class="clearfix"></div>
+  </div>
+</article>
+<article class="panel panel-default panel-article panel-article-list" data-id="3">
+   <div class="panel-body">
+      <h2><a href="/article/3.html">关于android 5.0 网络图标上的感叹号及其解决办法[转]</a></h2>
+      <p>原因众所周知，就我个人而言，无需ROOT喜欢的解决方法是，把网络检测服务器设置为国内的小米：</p>
+
+<ol><li>下载谷歌ADT开发工具。</li>
+	<li>打开手机开发者模式。</li>
+	<li>执行：adb shell “settings put global captive_portal_server connect.rom.miui.com”</li>
+</ol><div> </div>
+
+<div><span style="font-size:medium">具体原理参考以下内容（转自小狐狸.中国博文）：</span></div>
+
+<p>升级了安卓5.0的同学们一定对网络图标上面的那个感叹号感到十分郁闷。安卓5.0引入了一种新的网络评估机制来评估网络状况，当你有网络请求时会自动选择网络连接条件最好的一个网络进行连接。该机制的代码实现如下：</p>...
+  </div>
+    <div class="panel-footer">
+        <a href="/category/skill-1.html">奇技淫巧</a>
+       <a class="time hidden-sm" href="/article/3.html"><time datetime="" pubdate="" class="glyphicon glyphicon-calendar"></time> 2016-02-05 18:30:16</a>
+               <a class="comment" href="/article/3.html#comment"><span class="glyphicon glyphicon-comment"></span> <span class="ds-thread-count" data-thread-key="3" data-count-type="comments"></span></a>
+              <div class="clearfix"></div>
+  </div>
+</article>
+<article class="panel panel-default panel-article panel-article-list" data-id="2">
+   <div class="panel-body">
+      <h2><a href="/article/2.html">WordPress海外线路顶级域名静态资源使用SAE二级域</a></h2>
+      <p><span style="color:rgb(85, 85, 85); font-family:verdana,bitstream vera sans,tahoma,helvetica,sans-serif; font-size:12px">众所周知，未备案的顶级域名只能绑定海外线路，像俺的 http://chengxuan.li/ 这样的顶级域名，是无轮如何也没法备案的~~</span><br><span style="color:rgb(85, 85, 85); font-family:verdana,bitstream vera sans,tahoma,helvetica,sans-serif; font-size:12px">有些静态资源（如CSS、JS）用什么域名都无所谓，但如果是海外线路顶级域名，呵呵~~速度又慢，而且，产生的云豆消耗是双倍的。有没有办法让用户看到的是顶级域名，静态资源还能又快又省钱呢？答案是肯定的，在此自己做了一个Wordpress插件来方便自己、造福大家，先看效果：</span></p>
+
+<p><img alt="" src="http://dn-flyhope.qbox.me/upload/2016/56b479504440b.png"></p>
+
+<p><span style="color:rgb(85, 85, 85); font-family:verdana,bitstream vera sans,tahoma,helvetica,sans-serif; font-size:12px">插件安装方法很简单，下载附件中的文件，解压，将css-single目录放至wp-content\plugins\下，提交代码，进Wordpress后面，插件-已安装插件，找到“静态文件SAE二级域名”，直接启用，然后，打开自己的前台页面用抓包工具（如Firebug）看效果吧！</span></p>
+  </div>
+    <div class="panel-footer">
+        <a href="/category/web-1.html">WEB应用</a>
+       <a class="time hidden-sm" href="/article/2.html"><time datetime="" pubdate="" class="glyphicon glyphicon-calendar"></time> 2016-02-05 18:28:55</a>
+               <a class="comment" href="/article/2.html#comment"><span class="glyphicon glyphicon-comment"></span> <span class="ds-thread-count" data-thread-key="2" data-count-type="comments"></span></a>
+              <div class="clearfix"></div>
+  </div>
+</article>
 <article class="panel panel-default panel-article panel-article-list" data-id="1">
    <div class="panel-body">
       <h2><a href="/article/1.html">应用免费短信监控报警的解决方案</a></h2>
