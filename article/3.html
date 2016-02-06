@@ -43,7 +43,7 @@
 
 <p>升级了安卓5.0的同学们一定对网络图标上面的那个感叹号感到十分郁闷。安卓5.0引入了一种新的网络评估机制来评估网络状况，当你有网络请求时会自动选择网络连接条件最好的一个网络进行连接。该机制的代码实现如下：</p>
 
-<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/QQ%E6%88%AA%E5%9B%BE20141216160153.png" style="border:0px; max-width:600px" /></p>
+<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/QQ%E6%88%AA%E5%9B%BE20141216160153.png" /></p>
 
 <p>简要来说就是，如果该网络是VPN，那么直接使用这个网络进行连接，否则调用<strong>isCaptivePortal()</strong>&nbsp;函数进行网络状况的判定，再根据判定结果决定是否选用此网络。 而罪魁祸首就是这个&nbsp;<strong>isCaptivePortal()</strong>&nbsp;函数，它会访问<strong>clients3.google.com/generate_204</strong>&nbsp;并根据返回结果来判断网络联通状况。正是这个google的网址被墙导致安卓没有办法评估网络，这样就导致了那个蛋碎的感叹号一直存在，以及wifi用着用着突然自动连回数据连接了。</p>
 
@@ -51,7 +51,7 @@
 
 <p>想必大家都连接过那些需要验证才能使用的wifi热点吧，当你们连接这些热点的时候，android会自动弹出提示询问你是否需要登录。而这个功能就是依靠了<strong>isCaptivePortal()</strong>&nbsp;这个函数才得以实现，具体原理如下：</p>
 
-<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/QQ%E6%88%AA%E5%9B%BE20141216161135.png" style="border:0px; max-width:600px" /></p>
+<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/QQ%E6%88%AA%E5%9B%BE20141216161135.png" /></p>
 
 <p>安卓先访问&nbsp;<strong>clients3.google.com/generate_204</strong>&nbsp;这个网址，而这个网址如字面所说，会产生一个 http 204 返回值。204返回值的意思就是空内容。如果当前wifi是需要登录才可以连接，那么当试图访问google的服务器的时候，wifi的验证机制一定会自动跳转到一个登录页面，这个时候http请求的返回值就必然不是204了。就是通过这一机制，便可以区分当前wifi是否需要验证，不得不佩服想出这个办法的人来。</p>
 
@@ -106,7 +106,7 @@
 
 <p><strong>如果你对原作者提供的服务速度不满意，可以在文末找到网友提供的其它服务地址。</strong></p>
 
-<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/Screenshot_2014-12-16-16-24-07-168x300.png" style="border:0px; max-width:600px" /></p>
+<p><img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/Screenshot_2014-12-16-16-24-07-168x300.png" /></p>
 
 <p>是不是看着很舒服呢？烦人的感叹号没有了~</p>
 
@@ -178,7 +178,7 @@
 <hr />
 <h2>一键设置工具（需要root）</h2>
 
-<p>锵锵锵！由于有些人不太熟悉adb之类的操作，因此就做了一个小工具方便大家直接在手机上设置！&nbsp;<img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/device-2014-12-26-214011.png" style="border:0px; max-width:600px" /></p>
+<p>锵锵锵！由于有些人不太熟悉adb之类的操作，因此就做了一个小工具方便大家直接在手机上设置！&nbsp;<img alt="enter image description here" src="https://www.noisyfox.cn/wp-content/uploads/2014/12/device-2014-12-26-214011.png" /></p>
 
 <ul>
 	<li>下载地址&nbsp;NoExclamation Portal Server 修改器&nbsp;<a href="https://www.noisyfox.cn/?smd_process_download=1&amp;download_id=318" style="color: rgb(41, 112, 166); text-decoration: none;" title="NoExclamation Portal Server 修改器">Download Now!</a></li>
