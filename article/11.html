@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>oh my zsh支持多用户的安装方法 - 李枨煊 - Powered By Hiblog</title>
+       <link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+     <link href="//chengxuan.li/HiBlog/resource/theme/default/hiblog.css" type="text/css" rel="stylesheet" />
+      <!--[if lt IE 9]>
+     <script type="text/javascript" src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js?debug=1"></script>
+      <script type="text/javascript" src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js?debug=1"></script>
+     <![endif]-->
+  </head>
+   <body class="home">
+       <div class="container-fluid">
+         <div id="sidebar" class="col-md-3 col-md-push-9" role="complementary"></div>
+          <div id="content" class="col-md-9 col-md-pull-3" role="main">
+<ol class="breadcrumb">
+ <li>
+      <a href="/">首页</a>
+    </li>
+ <li>
+      <a href="/category/skill-1.html">奇技淫巧</a>
+    </li>
+ <li class="active">oh my zsh支持多用户的安装方法</li>
+</ol>
+
+<article class="panel panel-default panel-article">
+  <div class="panel-body">
+      <h1>oh my zsh支持多用户的安装方法</h1>
+       <p>oh my zsh是很多人喜欢的SHELL，官方提供的安装方法，只是针对当前单用户安装的，也就是说，如果计算机存在多个用户，当前用户安装后，其它用户用的还不是oh my zsh，对于一些公共使用的服务器想统一SHELL来说是比较心累的。</p>
+
+<p>&nbsp;</p>
+
+<p>经过对官方的安装方法的研究，总结了一下支持多用户的安装方法：</p>
+
+<p>以CentOS系统为例，安装方法如下：</p>
+
+<pre class="code highlight" style="box-sizing: border-box; overflow-x: auto; overflow-y: hidden; font-family: Menlo, &quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, &quot;Ubuntu Mono&quot;, &quot;Courier New&quot;, &quot;andale mono&quot;, &quot;lucida console&quot;, monospace; padding: 10px; margin-top: 0px; margin-bottom: 0px; word-break: break-all; word-wrap: normal; color: rgb(248, 248, 242); border-top: none rgb(85, 85, 85); border-right: none rgb(85, 85, 85); border-bottom: none rgb(85, 85, 85); border-left: 1px solid rgb(85, 85, 85); border-radius: 0px; text-shadow: none; white-space: pre; line-height: 1.5 !important; background-color: rgb(39, 40, 34);">
+<code><span style="color:rgb(117, 113, 94)"># 安装oh my zsh</span>
+<span style="color:rgb(102, 217, 239)">if</span> <span style="color:rgb(249, 38, 114)">[</span> ! -n <span style="color:rgb(230, 219, 116)">&quot;</span>$ZSH<span style="color:rgb(230, 219, 116)">&quot;</span> <span style="color:rgb(249, 38, 114)">]</span>; <span style="color:rgb(102, 217, 239)">then</span>
+<span style="color:rgb(102, 217, 239)">	</span>export ZSH<span style="color:rgb(249, 38, 114)">=</span>/usr/local/zsh
+<span style="color:rgb(102, 217, 239)">fi</span>
+<span style="color:rgb(102, 217, 239)">if</span> <span style="color:rgb(249, 38, 114)">[</span> ! -d $ZSH <span style="color:rgb(249, 38, 114)">]</span> ; <span style="color:rgb(102, 217, 239)">then</span>
+<span style="color:rgb(102, 217, 239)">    </span>git clone --depth<span style="color:rgb(249, 38, 114)">=</span>1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH
+<span style="color:rgb(102, 217, 239)">fi</span>
+<span style="color:rgb(102, 217, 239)">if</span> ! <span style="color:rgb(249, 38, 114)">(</span>fgrep -q <span style="color:rgb(230, 219, 116)">&quot;oh-my-zsh&quot;</span> /etc/zshrc<span style="color:rgb(249, 38, 114)">)</span>; <span style="color:rgb(102, 217, 239)">then </span>
+<span style="color:rgb(102, 217, 239)">    </span>cmd<span style="color:rgb(249, 38, 114)">=</span><span style="color:rgb(230, 219, 116)">&#39;</span>
+<span style="color:rgb(230, 219, 116)">if [ ! -n &quot;$ZSH&quot; ]; then</span>
+<span style="color:rgb(230, 219, 116)">&#39;</span><span style="color:rgb(230, 219, 116)">&quot;	export ZSH=</span><span style="color:rgb(102, 217, 239)">${</span>ZSH<span style="color:rgb(102, 217, 239)">}</span><span style="color:rgb(230, 219, 116)">&quot;</span><span style="color:rgb(230, 219, 116)">&#39;</span>
+<span style="color:rgb(230, 219, 116)">fi</span>
+<span style="color:rgb(230, 219, 116)">if [ ! -n &quot;$ZSH_THEME&quot; ]; then</span>
+<span style="color:rgb(230, 219, 116)">	ZSH_THEME=&quot;bira&quot;</span>
+<span style="color:rgb(230, 219, 116)">fi</span>
+<span style="color:rgb(230, 219, 116)">if [ ! -n &quot;$plugins&quot; ]; then</span>
+<span style="color:rgb(230, 219, 116)">	plugins=(git)</span>
+<span style="color:rgb(230, 219, 116)">fi</span>
+<span style="color:rgb(230, 219, 116)">source $ZSH/oh-my-zsh.sh</span>
+<span style="color:rgb(230, 219, 116)">	&#39;</span>
+    echo <span style="color:rgb(230, 219, 116)">&quot;</span>$cmd<span style="color:rgb(230, 219, 116)">&quot;</span> &gt;&gt; /etc/zshrc
+<span style="color:rgb(102, 217, 239)">fi</span></code></pre>
+
+<p>如果是其它系统，公共zshrc文件不在/etc/zshrc，请自行修改为其所以路径即可。</p>
+ </div>
+    <div class="panel-footer">
+        <time datetime="2016-08-25 18:58:22" pubdate="2016-08-25" class="glyphicon glyphicon-calendar">
+         2016-08-25 18:58:22
+     </time>
+       <div class="bshare-custom share">
+        <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+        </div>
+        <div class="clearfix"></div>
+  </div>
+</article>
+
+<div id="comment" class="comment-content panel panel-default">
+  <div class="panel-heading">评论</div>
+   <div class="panel-body">
+      <div class="ds-thread" data-thread-key="11" data-title="oh my zsh支持多用户的安装方法"></div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=ae9792f6-df92-4203-8930-5fc54f393e38&style=2&textcolor=#000000&bgcolor=none&bp=sinaminiblog,weixin,qzone,favorite&text=分享"></script>
+</div>
+     </div>
+
+        <script type="text/javascript">
+        var $CONFIG = {};
+        </script>
+        
+        
+     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="//chengxuan.li/HiBlog/resource/theme/default/hiblog.js"></script>
+
+               <script type="text/javascript">
+           var duoshuoQuery = {
+              short_name : "chengxuan"
+          };
+        </script>
+           
+  </body>
+</html>
